@@ -14,6 +14,19 @@ public class ContactStorage {
         return contactList;
     }
 
+    public Contact getName(String name){
+        for (Contact c: contactList) {
+            if (name.equals(c.firstName)){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    public void remove(Contact contact){
+        contactList.remove(contact);
+    }
+
     /*public void print(){
         System.out.println(contactList);
     }*/
