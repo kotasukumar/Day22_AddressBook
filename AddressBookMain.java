@@ -1,6 +1,5 @@
 package com.addressbook;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -9,33 +8,33 @@ public class AddressBookMain {
     UserInterface userInterface = new UserInterface();
 
     public void userHandle(int choice){
-            switch (choice){
-                case 1:
-                    addContact();
+        switch (choice){
+            case 1:
+                addContact();
+                break;
+            case 2:
+                System.out.println("Enter the name of the person you want to remove");
+                Scanner scanner = new Scanner(System.in);
+                name = scanner.nextLine();
+                Contact nameToRemove = contactStorage.getName(name);
+                contactStorage.remove(nameToRemove);
                     break;
-                case 2:
-                    System.out.println("Enter the name of the person you want to remove");
-                    Scanner scanner = new Scanner(System.in);
-                    name = scanner.nextLine();
-                    Contact nameToRemove = contactStorage.getName(name);
-                    contactStorage.remove(nameToRemove);
-                    break;
-                case 3:
-                    System.out.println("Enter the first name of the person you want to update");
-                    Scanner scanner1 = new Scanner(System.in);
-                    name = scanner1.nextLine();
-                    Contact nameToUpdate = contactStorage.getName(name);
-                    update(nameToUpdate);
-                    break;
-                case 4:
-                    userInterface.print(contactStorage.getContactList());
-                    break;
-                case 5:
-                    break;
-                default:
-                    System.out.println("Invalid input");
-            }
+            case 3:
+                System.out.println("Enter the first name of the person you want to update");
+                Scanner scanner1 = new Scanner(System.in);
+                name = scanner1.nextLine();
+                Contact nameToUpdate = contactStorage.getName(name);
+                update(nameToUpdate);
+                break;
+            case 4:
+                userInterface.print(contactStorage.getContactList());
+                break;
+            case 5:
+                break;
+            default:
+                System.out.println("Invalid input");
         }
+    }
 
     public void addContact() {
         Scanner scanner = new Scanner(System.in);
