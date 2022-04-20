@@ -17,4 +17,12 @@ public class UserInterface {
         int choice = scanner.nextInt();
         return choice;
     }
+
+    public int showUpdateMenu(){
+        System.out.println("Enter the parameter to update");
+        System.out.println("1-first name\n2-last name\n3-address\n4-city\n5-state\n6-zip\n7-contactNumber\n8-email id");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        return choice;
+    }
 }
