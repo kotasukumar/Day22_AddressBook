@@ -7,7 +7,7 @@ public class AddressBookMain {
     ContactStorage contactStorage = new ContactStorage();
     UserInterface userInterface = new UserInterface();
 
-    public void userHandle(int choice){
+    public void userHandle(int choice, String bookName){
         switch (choice){
             case 1:
                 addContact();
@@ -27,9 +27,13 @@ public class AddressBookMain {
                 update(nameToUpdate);
                 break;
             case 4:
-                userInterface.print(contactStorage.getContactList());
+                System.out.println(bookName);
+//                userInterface.print(contactStorage.getContactList());
+                userInterface.printBook(contactStorage.getBookList());
                 break;
             case 5:
+                int choice1 = userInterface.getBookName();
+                work(choice1);
                 break;
             default:
                 System.out.println("Invalid input");
@@ -54,9 +58,10 @@ public class AddressBookMain {
         System.out.println("Enter contact number");
         contact1.contactNumber = scanner.nextLong();
         System.out.println("Enter emailID");
-        contact1.emailID = scanner.nextLine();
+        contact1.emailID = scanner.next();
 
         contactStorage.add(contact1);
+        contactStorage.addBook();
     }
 
     public void update(Contact contact){
@@ -100,15 +105,26 @@ public class AddressBookMain {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to Address Book program");
-        int choice = 0;
-
+    public void work(int choice){
         AddressBookMain addressBookMain = new AddressBookMain();
         UserInterface userInterface = new UserInterface();
-        while (choice != 5) {
-            choice = userInterface.showMainMenu();
-            addressBookMain.userHandle(choice);
+
+        while (choice == 1){
+            //           choice = userInterface.getBookName();
+            System.out.println("Enter name of book");
+            Scanner scanner = new Scanner(System.in);
+            String bookName = scanner.nextLine();
+            while (choice != 5) {
+                choice = userInterface.showMainMenu();
+                addressBookMain.userHandle(choice, bookName);
+            }
         }
+    }
+
+    public static void main(String[] args) {
+        AddressBookMain addressBookMain = new AddressBookMain();
+        System.out.println("Welcome to Address Book program");
+
+        addressBookMain.work(1);
     }
 }

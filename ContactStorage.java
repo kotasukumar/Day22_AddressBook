@@ -1,10 +1,14 @@
 package com.addressbook;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class ContactStorage {
     private ArrayList<Contact> contactList = new ArrayList<>();
+    private ArrayList<ArrayList<Contact>> bookList = new ArrayList<ArrayList<Contact>>();
+
+    public void addBook(){
+        bookList.add(contactList);
+    }
 
     public void add(Contact contact){
         contactList.add(contact);
@@ -12,6 +16,10 @@ public class ContactStorage {
 
     public ArrayList<Contact> getContactList(){
         return contactList;
+    }
+
+    public ArrayList<ArrayList<Contact>> getBookList(){
+        return bookList;
     }
 
     public Contact getName(String name){
